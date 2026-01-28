@@ -29,6 +29,14 @@
 int main(void){
 	uint32_t var = 0;
 	uint32_t volatile *pSRAM_ADDR1 = (uint32_t*)SRAM_ADDR1;
+	 /*The volatile qualifier forces the compiler to read
+	  *  the value of current address on every access.This
+	  *  prevents the compiler from optimizing loop by
+	  *  assuming that the memory content does not change outside
+	  *  of the program.
+	  *
+	  *  This is required when the memory location can be modified by
+	  *  hardware, DMA, or another execution context.*/
 
 	while(1){
 		var = *pSRAM_ADDR1;

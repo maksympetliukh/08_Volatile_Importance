@@ -24,7 +24,18 @@
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
 #endif
 
+#define SRAM_ADDR1 0x20000004UL
+
 int main(void){
+	uint32_t var = 0;
+	uint32_t volatile *pSRAM_ADDR1 = (uint32_t*)SRAM_ADDR1;
+
+	while(1){
+		var = *pSRAM_ADDR1;
+		if(var) break;
+	}
+
+	while(1);
 
 	return EXIT_SUCCESS;
 }
